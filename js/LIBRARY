@@ -1,0 +1,14 @@
+{
+  id: 'unique-id',
+  title: 'Title',
+  author: 'Author',
+  cover: 'image-url',
+  genre: 'Genre · Sub',
+  desc: 'One-line description',
+  why: 'Why PROLOGUE recommends it',
+  note: 'A short reader quote',
+  pages: [
+    { heading: 'Chapter 1', paragraphs: ['...', '...'] },
+    { heading: 'Chapter 2', paragraphs: ['...'] }
+  ]
+}

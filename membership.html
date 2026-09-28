@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROLOGUE · Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .form-card {
+      background: var(--bg-elev); border-radius: var(--radius);
+      padding: 2.5rem; box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light); max-width: 820px; margin: 0 auto;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .success-card { text-align: center; padding: 2.5rem 1.5rem; display: none; }
+    .success-card i { font-size: 3.5rem; color: var(--gold); margin-bottom: 1.2rem; }
+    .success-card h3 { font-size: 1.8rem; color: var(--wine); margin-bottom: 0.6rem; }
+    body.dark .success-card h3 { color: var(--gold-light); }
+    .app-id {
+      font-family: monospace; font-size: 1.3rem; background: var(--cream);
+      padding: 0.6rem 1.4rem; border-radius: 40px; display: inline-block;
+      margin: 1rem 0; letter-spacing: 2px; color: var(--wine); font-weight: 700;
+    }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } .form-card { padding: 1.6rem; } }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal" style="text-align:center;">Membership Registration</h2>
+      <p class="section-subtitle reveal" style="text-align:center;margin:0 auto 2rem;">Fill out the form to join PROLOGUE.</p>
+
+      <div class="form-card reveal">
+        <form id="membershipForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" placeholder="Your full name" minlength="3" required>
+              <span class="error-msg" id="nameError">Please enter at least 3 characters.</span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+              <span class="error-msg" id="emailError">Please enter a valid email.</span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+              <span class="error-msg" id="phoneError">Please enter a valid phone number.</span>
+            </div>
+            <div class="form-group">
+              <label for="department">College / Department <span class="req">*</span></label>
+              <input type="text" id="department" placeholder="e.g. CSE, ECE" required>
+              <span class="error-msg" id="deptError">Department is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="year">Year of Study <span class="req">*</span></label>
+              <select id="year" required>
+                <option value="">Select year</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+              </select>
+              <span class="error-msg" id="yearError">Please select your year.</span>
+            </div>
+            <div class="form-group">
+              <label for="regNo">Register Number <span class="req">*</span></label>
+              <input type="text" id="regNo" placeholder="Your register number" required>
+              <span class="error-msg" id="regError">Register number is required.</span>
+            </div>
+            <div class="form-group full">
+              <label for="motivation">Why do you want to join PROLOGUE? <span class="req">*</span></label>
+              <textarea id="motivation" placeholder="Tell us in a few sentences..." minlength="20" required></textarea>
+              <span class="error-msg" id="motivationError">Please write at least 20 characters.</span>
+            </div>
+            <div class="form-group full">
+              <label for="favBook">Favorite Book / Author</label>
+              <input type="text" id="favBook" placeholder="e.g. The Alchemist / Rupi Kaur">
+            </div>
+            <div class="form-group full">
+              <label>Areas of Interest <span class="req">*</span></label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Reading"> Reading</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Writing"> Writing</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Poetry"> Poetry</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Debate"> Debate</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Theatre"> Theatre</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Literary Discussion"> Literary Discussion</label>
+                <label class="checkbox-item"><input type="checkbox" name="interest" value="Other"> Other</label>
+              </div>
+              <span class="error-msg" id="interestError">Please select at least one interest.</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:1.8rem;width:100%;justify-content:center;">SUBMIT MEMBERSHIP APPLICATION</button>
+        </form>
+        <div class="form-status" id="formStatus"></div>
+
+        <div class="success-card" id="successCard">
+          <i class="fas fa-check-circle"></i>
+          <h3>Welcome to the beginning of your next chapter.</h3>
+          <p style="color:var(--text-secondary);">Your PROLOGUE membership application has been recorded.</p>
+          <div class="app-id" id="appId"></div>
+          <p style="font-size:0.85rem;color:var(--text-secondary);">This is a frontend demonstration. Real applications would require backend/database integration.</p>
+          <button class="btn btn-outline" id="newAppBtn" style="margin-top:1.2rem;">Submit Another Application</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>PROLOGUE</h2>
+        <p>The Reading Club of LBSITW</p>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-quote">
+        “A reader lives a thousand lives before he dies.”
+      </p>
+
+      <div class="footer-bottom">
+        <span>📖 Read · Reflect · Reimagine</span>
+        <span>© 2026 PROLOGUE · LBSITW</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/membership.js"></script>
+</body>
+</html>

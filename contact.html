@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROLOGUE · Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ============================================================
+       CONTACT PAGE
+       ============================================================ */
+    .contact-hero {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+    .contact-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--wine);
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+    body.dark .contact-title { color: var(--gold-light); }
+    .contact-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin: 0 auto;
+      max-width: 520px;
+    }
+
+    /* ---------- Contact cards ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .contact-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+    }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold);
+    }
+    .contact-card i {
+      font-size: 1.9rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+    .contact-card:hover i { transform: scale(1.15); }
+    .contact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0 0 6px;
+    }
+    .contact-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin: 0;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+    .contact-card .arrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--gold);
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .contact-card:hover .arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* WhatsApp card — green accent */
+    .contact-card.whatsapp i { color: #25D366; }
+    .contact-card.whatsapp:hover { border-color: #25D366; }
+
+    /* ---------- Form ---------- */
+    .contact-form-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      background: var(--bg-elev);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    body.dark .contact-form-wrap { background: var(--bg-elev); }
+
+    .contact-form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--wine);
+      text-align: center;
+      margin: 0 0 1.8rem;
+    }
+    body.dark .contact-form-title { color: var(--gold-light); }
+
+    @media (max-width: 640px) {
+      .contact-form-wrap { padding: 1.8rem 1.4rem; }
+      .contact-grid { gap: 1rem; }
+      .contact-card { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="section" style="padding-top:5rem;">
+    <div class="container">
+
+      <!-- ============ HEADER ============ -->
+      <div class="contact-hero reveal">
+        <span class="contact-eyebrow">Reach Out</span>
+        <h1 class="contact-title">Get in Touch</h1>
+        <p class="contact-desc">Questions, ideas, or just want to say hello? We'd love to hear from you.</p>
+      </div>
+
+      <!-- ============ CONTACT CARDS ============ -->
+      <div class="contact-grid">
+
+        <!-- Email -->
+        <a class="contact-card reveal" href="mailto:prologue.lbsitw@gmail.com" aria-label="Email PROLOGUE">
+          <i class="fas fa-envelope"></i>
+          <h4>Email</h4>
+          <p>prologue.lbsitw@gmail.com</p>
+          <span class="arrow">Open →</span>
+        </a>
+
+        <!-- Location -->
+        <a class="contact-card reveal"
+           href="https://www.google.com/maps/search/?api=1&query=LBS+Institute+of+Technology+for+Women+Thiruvananthapuram"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="View PROLOGUE on Google Maps">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Location</h4>
+          <p>LBSITW, Thiruvananthapuram</p>
+          <span class="arrow">Open in Maps →</span>
+        </a>
+
+        <!-- Instagram -->
+        <a class="contact-card reveal"
+           href="https://www.instagram.com/prologue.lbt"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="PROLOGUE on Instagram">
+          <i class="fab fa-instagram"></i>
+          <h4>Instagram</h4>
+          <p>@prologue.lbt</p>
+          <span class="arrow">Open Instagram →</span>
+        </a>
+
+        <!-- WhatsApp Community -->
+        <a class="contact-card whatsapp reveal"
+           href="https://chat.whatsapp.com/JAbzOgyKszTICixbBE3Esz"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Join PROLOGUE WhatsApp Community">
+          <i class="fab fa-whatsapp"></i>
+          <h4>WhatsApp Community</h4>
+          <p>Join the group chat</p>
+          <span class="arrow">Join Community →</span>
+        </a>
+
+        <!-- WhatsApp Channel -->
+        <a class="contact-card whatsapp reveal"
+           href="https://whatsapp.com/channel/0029Vb8QflxBadmjc6GoDj2a"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Follow PROLOGUE WhatsApp Channel">
+          <i class="fab fa-whatsapp"></i>
+          <h4>WhatsApp Channel</h4>
+          <p>Follow for updates</p>
+          <span class="arrow">Follow Channel →</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="contact-card reveal"
+           href="https://www.linkedin.com/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="PROLOGUE on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+          <h4>LinkedIn</h4>
+          <p>Connect with us</p>
+          <span class="arrow">Open LinkedIn →</span>
+        </a>
+
+        <!-- Website -->
+        <a class="contact-card reveal"
+           href="home.html"
+           aria-label="PROLOGUE home">
+          <i class="fas fa-globe"></i>
+          <h4>Website</h4>
+          <p>prologue.lbsitw</p>
+          <span class="arrow">Visit Website →</span>
+        </a>
+
+      </div>
+
+      <!-- ============ FORM ============ -->
+      <div class="contact-form-wrap reveal">
+        <h3 class="contact-form-title">Send a Message</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="cName">Name <span class="req">*</span></label>
+            <input type="text" id="cName" required placeholder="Your name">
+            <span class="error-msg" id="cNameErr">Please enter your name.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="cEmail">Email <span class="req">*</span></label>
+            <input type="email" id="cEmail" required placeholder="you@example.com">
+            <span class="error-msg" id="cEmailErr">Please enter a valid email.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="cMsg">Message <span class="req">*</span></label>
+            <textarea id="cMsg" required placeholder="Your message..." minlength="10"></textarea>
+            <span class="error-msg" id="cMsgErr">Please write at least 10 characters.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">
+            SEND MESSAGE
+          </button>
+        </form>
+
+        <div class="form-status" id="contactStatus"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>PROLOGUE - The Reading Club of LBSITW</p>
+      <p style="margin-top:0.4rem;font-size:0.8rem;">Built with ♥ by PROLOGUE</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

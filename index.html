@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROLOGUE · The Reading Club of LBSITW</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #17100e;
+      color: #f0e7df;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---------- PROLOGUE OVERLAY ---------- */
+    .prologue {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 45%, #2b1d18 0%, #140d0b 65%, #0a0706 100%);
+      padding: 24px;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+      z-index: 1000;
+    }
+
+    .prologue.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .prologue-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 640px;
+      min-height: 540px;
+      text-align: center;
+    }
+
+    /* ---------- AMBIENT GLOW ---------- */
+    .ambient-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 520px;
+      height: 520px;
+      transform: translate(-50%, -50%) scale(0.6);
+      background: radial-gradient(circle, rgba(230, 194, 122, 0.3), transparent 68%);
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: blur(24px);
+      z-index: 0;
+    }
+
+    .ambient-glow.on {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* ---------- SINGLE QUOTE ---------- */
+    .quote-stage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 560px;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .quote-item {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      line-height: 1.65;
+      color: #e6c27a;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 1.1s ease, transform 1.1s ease;
+      text-shadow: 0 2px 26px rgba(230, 194, 122, 0.18);
+      padding: 0 20px;
+    }
+
+    .quote-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quote-item.fade {
+      opacity: 0;
+      transform: translateY(-18px);
+    }
+
+    /* ---------- LOGO HERO STAGE ---------- */
+    .logo-stage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .logo-stage.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .logo-stage.hide {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+
+    .logo-stage .intro-logo {
+      width: min(180px, 42vw);
+      height: min(180px, 42vw);
+      border-radius: 50%;
+      object-fit: cover;
+      background: #f5ede1;
+      box-shadow:
+        0 0 0 3px rgba(230, 194, 122, 0.25),
+        0 24px 60px rgba(230, 194, 122, 0.35),
+        0 8px 24px rgba(0, 0, 0, 0.5);
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 0 3px rgba(230, 194, 122, 0.25),
+          0 24px 60px rgba(230, 194, 122, 0.35),
+          0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 0 8px rgba(230, 194, 122, 0.15),
+          0 28px 70px rgba(230, 194, 122, 0.5),
+          0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .logo-stage .intro-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 12px;
+      text-indent: 12px;
+      color: #e6c27a;
+      text-shadow: 0 2px 20px rgba(230, 194, 122, 0.3);
+    }
+
+    /* ---------- NAMING STAGE ---------- */
+    .naming-stage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(16px);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      transition: opacity 1.1s ease, transform 1.1s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .naming-stage.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .naming-stage h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 7.5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: 14px;
+      color: #e6c27a;
+      margin: 0;
+      text-indent: 14px;
+      text-shadow: 0 4px 36px rgba(230, 194, 122, 0.22);
+    }
+
+    .naming-stage .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 4.5px;
+      text-transform: uppercase;
+      color: #d9c6b0;
+      margin-bottom: 30px;
+      font-weight: 400;
+      opacity: 0.92;
+    }
+
+    .enter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #e6c27a;
+      color: #1e1613;
+      border: none;
+      padding: 17px 44px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      box-shadow: 0 14px 38px rgba(230, 194, 122, 0.28);
+      text-transform: uppercase;
+    }
+
+    .enter-btn i {
+      font-size: 0.9rem;
+      transition: transform 0.35s ease;
+    }
+
+    .enter-btn:hover {
+      background: #f5da9e;
+      transform: translateY(-3px);
+      box-shadow: 0 22px 48px rgba(230, 194, 122, 0.4);
+    }
+
+    .enter-btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* ---------- SKIP BUTTON ---------- */
+    .skip-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 20;
+      background: transparent;
+      border: 1px solid rgba(230, 194, 122, 0.3);
+      color: #d9c6b0;
+      padding: 10px 26px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1.4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      text-transform: uppercase;
+    }
+
+    .skip-btn:hover {
+      background: rgba(230, 194, 122, 0.12);
+      border-color: #e6c27a;
+      color: #e6c27a;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 520px) {
+      .naming-stage h1 { letter-spacing: 9px; text-indent: 9px; font-size: 2rem; }
+      .naming-stage .subtitle { font-size: 0.72rem; letter-spacing: 3px; margin-bottom: 24px; }
+      .enter-btn { padding: 14px 32px; font-size: 0.84rem; letter-spacing: 1.4px; gap: 9px; }
+      .skip-btn { bottom: 20px; right: 20px; padding: 8px 18px; font-size: 0.7rem; letter-spacing: 1px; }
+      .quote-item { font-size: 1.15rem; }
+      .logo-stage .intro-logo { width: min(140px, 42vw); height: min(140px, 42vw); }
+      .logo-stage .intro-logo-text { letter-spacing: 8px; text-indent: 8px; font-size: 1.3rem; }
+    }
+
+    @media (max-width: 380px) {
+      .naming-stage h1 { letter-spacing: 6px; text-indent: 6px; font-size: 1.7rem; }
+      .enter-btn { padding: 12px 24px; font-size: 0.78rem; }
+      .quote-item { font-size: 1.05rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .quote-item, .ambient-glow, .naming-stage, .logo-stage,
+      .enter-btn {
+        transition-duration: 0.01ms !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="prologue" id="prologue">
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <div class="prologue-inner">
+
+      <!-- ===== STAGE 1 · QUOTE ===== -->
+      <div class="quote-stage" id="quoteStage">
+        <p class="quote-item" id="quote">“Every story begins with a word.”</p>
+      </div>
+
+      <!-- ===== STAGE 2 · LOGO HERO ===== -->
+      <div class="logo-stage" id="logoStage">
+        <img src="assets/images/logo.png" alt="PROLOGUE Logo" class="intro-logo">
+        <div class="intro-logo-text">PROLOGUE</div>
+      </div>
+
+      <!-- ===== STAGE 3 · NAMING + ENTER ===== -->
+      <div class="naming-stage" id="namingStage">
+        <h1>PROLOGUE</h1>
+        <p class="subtitle">The Reading Club of LBSITW</p>
+        <button class="enter-btn" id="enterBtn">
+          Enter Prologue <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <button class="skip-btn" id="skipBtn">Skip Intro</button>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      /* ==========================================================
+         PROLOGUE INTRO SEQUENCE (book stage removed)
+         1. Quote fades in
+         2. Quote fades out
+         3. LOGO HERO appears (big, glowing, pulsing)
+         4. Logo hides → PROLOGUE name + subtitle + Enter button
+         ========================================================== */
+
+      const prologue    = document.getElementById('prologue');
+      const ambientGlow = document.getElementById('ambientGlow');
+      const quoteStage  = document.getElementById('quoteStage');
+      const quote       = document.getElementById('quote');
+      const logoStage   = document.getElementById('logoStage');
+      const namingStage = document.getElementById('namingStage');
+      const enterBtn    = document.getElementById('enterBtn');
+      const skipBtn     = document.getElementById('skipBtn');
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- TIMINGS ---------- */
+      const T = prefersReduced
+        ? {
+            quoteIn:     80,
+            quoteOut:    450,
+            logoIn:      600,
+            logoOut:    1000,
+            nameIn:     1300
+          }
+        : {
+            quoteIn:     400,   // quote appears
+            quoteOut:   2800,   // quote fades out
+            logoIn:     3200,   // LOGO HERO appears
+            logoOut:    5300,   // logo hides
+            nameIn:     5800    // naming stage appears
+          };
+
+      /* 1 · Show quote */
+      setTimeout(() => {
+        quote.classList.add('visible');
+      }, T.quoteIn);
+
+      /* 2 · Hide quote */
+      setTimeout(() => {
+        quote.classList.remove('visible');
+        quote.classList.add('fade');
+        quoteStage.style.opacity = '0';
+      }, T.quoteOut);
+
+      /* 3 · Logo hero appears + ambient glow */
+      setTimeout(() => {
+        logoStage.classList.add('visible');
+        ambientGlow.classList.add('on');
+      }, T.logoIn);
+
+      /* 4 · Logo fades out, glow stays on for naming */
+      setTimeout(() => {
+        logoStage.classList.add('hide');
+      }, T.logoOut);
+
+      /* 5 · Naming stage appears */
+      setTimeout(() => {
+        namingStage.classList.add('visible');
+      }, T.nameIn);
+
+      /* ==========================================================
+         ENTER / SKIP → main page
+         ========================================================== */
+      function enterSite() {
+        prologue.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 950);
+      }
+
+      enterBtn.addEventListener('click', enterSite);
+      skipBtn.addEventListener('click', enterSite);
+
+      /* keyboard support */
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === 'Escape') {
+          if (prologue.classList.contains('fade-out')) return;
+          enterSite();
+        }
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

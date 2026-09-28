@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROLOGUE · Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .hero {
+    min-height: 88vh; display: flex; align-items: center;
+    position: relative; overflow: hidden; padding: 3rem 0;
+    background: radial-gradient(circle at 20% 30%, rgba(191,155,90,0.06), transparent 60%);
+  }
+  .hero h1 { font-size: clamp(2.2rem, 6.5vw, 4.2rem); line-height: 1.1; margin-bottom: 1.2rem; }
+  .hero h1 span { color: var(--wine); }
+  body.dark .hero h1 span { color: var(--gold-light); }
+  .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 2rem; }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .stat-card { text-align: center; }
+  .stat-card i { font-size: 2rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .stat-number { font-family: var(--font-serif); font-size: 2.6rem; font-weight: 700; color: var(--wine); line-height: 1; }
+  body.dark .stat-number { color: var(--gold-light); }
+  .stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-top: 0.4rem; }
+  .scroll-cue {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.8rem; letter-spacing: 2px; color: var(--text-secondary);
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+  .quote-strip { background: var(--wine); color: #f5ede1; padding: 3.5rem 0; text-align: center; }
+  .quote-strip p { font-family: var(--font-serif); font-size: clamp(1.3rem, 3.5vw, 1.9rem); font-style: italic; max-width: 720px; margin: 0 auto; }
+  .quote-strip cite { display: block; margin-top: 1rem; color: var(--gold-light); font-size: 0.95rem; font-style: normal; }
+  .benefit-card i { font-size: 1.7rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .benefit-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .benefit-card p { font-size: 0.9rem; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="reveal">Where Stories Begin,<br>Ideas Grow,<br><span>and Voices Find Their Pages.</span></h1>
+      <p class="reveal">PROLOGUE – The Reading Club of LBSITW is a space where students discover stories, exchange ideas, express creativity, and build a lasting culture of reading.</p>
+      <div class="btn-group reveal">
+        <a href="membership.html" class="btn btn-primary">JOIN PROLOGUE <i class="fas fa-arrow-right"></i></a>
+        <a href="about.html" class="btn btn-outline">EXPLORE OUR WORLD</a>
+      </div>
+    </div>
+    <div class="scroll-cue">SCROLL TO DISCOVER ↓</div>
+  </section>
+
+  <section class="quote-strip">
+    <div class="container">
+      <p class="reveal">"Reading gives us somewhere to go when we have to stay where we are."</p>
+      <cite>— Mason Cooley</cite>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Club Highlights</h2>
+      <p class="section-subtitle reveal">A snapshot of what PROLOGUE brings to campus.</p>
+      <div class="grid-4">
+        <div class="card stat-card reveal"><i class="fas fa-book-open"></i><div class="stat-number" data-count="15">0</div><div class="stat-label">Reading Sessions</div></div>
+        <div class="card stat-card reveal"><i class="fas fa-theater-masks"></i><div class="stat-number" data-count="8">0</div><div class="stat-label">Literary Activities</div></div>
+        <div class="card stat-card reveal"><i class="fas fa-pen-fancy"></i><div class="stat-number" data-count="24">0</div><div class="stat-label">Creative Expressions</div></div>
+        <div class="card stat-card reveal"><i class="fas fa-user-graduate"></i><div class="stat-number" data-count="60">0</div><div class="stat-label">Student Community</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title reveal">Upcoming Activities</h2>
+      <p class="section-subtitle reveal">A taste of what's coming soon.</p>
+      <div class="grid-3">
+        <div class="card benefit-card reveal"><i class="fas fa-book-open"></i><h3>Weekly Reading Circles</h3><p>Bring a book, share a passage, and discuss in a relaxed setting.</p></div>
+        <div class="card benefit-card reveal"><i class="fas fa-microphone-alt"></i><h3>Open Mic & Poetry</h3><p>Share your poetry, stories, or spoken word on stage.</p></div>
+        <div class="card benefit-card reveal"><i class="fas fa-pen-fancy"></i><h3>Creative Writing Workshop</h3><p>Prompts, peer feedback, and a safe space to experiment with words.</p></div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section">
+    <div class="container" style="text-align:center;">
+      <h2 class="section-title reveal">Explore Our Books</h2>
+      <p class="section-subtitle reveal" style="margin:0 auto 2rem;">
+        Read previews of classics, get recommendations by mood, and chat with our AI assistant.
+      </p>
+      <a href="books.html" class="btn btn-primary reveal">
+        BROWSE LIBRARY <i class="fas fa-book-open"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <div class="container">
+      <h2 class="section-title reveal">Ready to Begin Your Next Chapter?</h2>
+      <p class="section-subtitle reveal" style="margin: 0 auto 2rem;">Join the club and become part of the story.</p>
+      <a href="membership.html" class="btn btn-primary reveal">JOIN PROLOGUE <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+ <footer class="footer">
+  <div class="container">
+
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>PROLOGUE</h2>
+        <p>The Reading Club of LBSITW</p>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-quote">
+        “A reader lives a thousand lives before he dies.”
+      </p>
+
+      <div class="footer-bottom">
+        <span>📖 Read · Reflect · Reimagine</span>
+        <span>© 2026 PROLOGUE · LBSITW</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

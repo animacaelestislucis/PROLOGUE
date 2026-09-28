@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROLOGUE · Books & Reading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/books.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- ============ BOOK OF THE MONTH ============ -->
+  <section class="page-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-eyebrow">Featured</span>
+        <h2 class="section-title">Book of the Month</h2>
+      </header>
+
+      <article class="feature-book">
+        <figure class="feature-cover">
+          <img id="botmCover" src="" alt="">
+        </figure>
+        <div class="feature-info">
+          <h3 id="botmTitle"></h3>
+          <p class="feature-author" id="botmAuthor"></p>
+          <p class="feature-desc" id="botmDesc"></p>
+          <p class="feature-why"><strong>Why PROLOGUE recommends it:</strong> <span id="botmWhy"></span></p>
+          <blockquote class="feature-note" id="botmNote"></blockquote>
+          <button class="btn btn-primary" id="botmReadBtn">
+            Read Now <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ LIBRARY ============ -->
+  <section class="page-section page-section--alt">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-eyebrow">The Collection</span>
+        <h2 class="section-title">Our Library</h2>
+        <p class="section-desc">Browse real, existing books. Click any title to read a preview and find where to continue.</p>
+      </header>
+
+      <div class="filter-bar" id="libFilterBar" role="tablist"></div>
+      <div class="library-grid" id="libraryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ RECOMMENDATION ============ -->
+  <section class="page-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-eyebrow">Discover</span>
+        <h2 class="section-title">What Should I Read Today?</h2>
+        <p class="section-desc">Pick a mood and let PROLOGUE recommend a book.</p>
+      </header>
+
+      <div class="mood-row" id="moodGrid">
+        <button class="mood-chip" data-mood="thoughtful">🌧️ Thoughtful</button>
+        <button class="mood-chip" data-mood="inspiring">✨ Inspiring</button>
+        <button class="mood-chip" data-mood="emotional">❤️ Emotional</button>
+        <button class="mood-chip" data-mood="lighthearted">😂 Lighthearted</button>
+        <button class="mood-chip" data-mood="intellectual">🧠 Intellectual</button>
+        <button class="mood-chip" data-mood="calm">🌙 Calm</button>
+        <button class="mood-chip" data-mood="adventurous">🔥 Adventurous</button>
+      </div>
+
+      <div class="recommend-box" id="recommendResult">
+        <p class="muted">Select a mood above, or press "Surprise Me".</p>
+      </div>
+      <button class="btn btn-outline" id="surpriseBtn">Surprise Me ✨</button>
+    </div>
+  </section>
+
+  <!-- ============ AI ASSISTANT ============ -->
+  <section class="page-section page-section--alt">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-eyebrow">Support</span>
+        <h2 class="section-title">Ask PROLOGUE AI</h2>
+        <p class="section-desc">Your reading assistant — ask for book ideas, quotes, or writing prompts.</p>
+      </header>
+
+      <div class="ai-panel">
+        <div class="ai-header">
+          <i class="fas fa-robot"></i>
+          <div>
+            <strong>PROLOGUE Assistant</strong>
+            <span>Always here to help you find your next read</span>
+          </div>
+        </div>
+        <div class="ai-body" id="aiBody">
+          <div class="ai-msg ai-msg--bot">
+            Hi! Try asking me to <em>“recommend a book”</em>, <em>“give me a quote”</em>, or <em>“writing prompt”</em>.
+          </div>
+        </div>
+        <form class="ai-input" id="aiForm">
+          <input type="text" id="aiInput" placeholder="Type your message…" autocomplete="off" aria-label="Message">
+          <button type="submit" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ READER MODAL ============ -->
+  <div class="reader-overlay" id="readerModal" role="dialog" aria-modal="true" aria-label="Book reader">
+    <div class="reader">
+      <header class="reader-top">
+        <div class="reader-info">
+          <h3 id="readerTitle">Book Title</h3>
+          <p id="readerAuthor">Author</p>
+        </div>
+        <button class="reader-close" id="readerClose" aria-label="Close reader">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+
+      <nav class="reader-tabs" id="readerChapters" aria-label="Chapters"></nav>
+
+      <div class="reader-content" id="readerBody"></div>
+
+      <footer class="reader-bottom">
+        <button class="reader-nav" id="readerPrev">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <span class="reader-progress" id="readerProgress">Chapter 1 of 1</span>
+        <button class="reader-nav" id="readerNext">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </footer>
+    </div>
+  </div>
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>PROLOGUE</h2>
+        <p>The Reading Club of LBSITW</p>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-quote">
+        “A reader lives a thousand lives before he dies.”
+      </p>
+
+      <div class="footer-bottom">
+        <span>📖 Read · Reflect · Reimagine</span>
+        <span>© 2026 PROLOGUE · LBSITW</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/books.js"></script>
+</body>
+</html>

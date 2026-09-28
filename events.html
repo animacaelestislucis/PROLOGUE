@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROLOGUE · Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .events-tabs { display: flex; gap: 0.5rem; margin: 0 0 2.5rem; border-bottom: 1px solid var(--border-light); }
+  .event-tab {
+    padding: 0.7rem 1.4rem; background: none; border: none;
+    font-size: 0.95rem; font-weight: 600; color: var(--text-secondary);
+    cursor: pointer; transition: var(--transition); border-radius: 8px 8px 0 0;
+    font-family: var(--font-sans);
+  }
+  .event-tab.active { color: var(--wine); border-bottom: 3px solid var(--wine); }
+  body.dark .event-tab.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  .event-list { display: flex; flex-direction: column; gap: 1rem; }
+  .event-item {
+    background: var(--bg-elev); border: 1px solid var(--border-light);
+    border-radius: var(--radius); padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: var(--transition);
+    box-shadow: var(--shadow-sm); flex-wrap: wrap; gap: 1rem;
+  }
+  .event-item:hover { transform: translateX(8px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+  .event-title { font-weight: 600; color: var(--text-primary); font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .event-meta { display: flex; gap: 1.5rem; color: var(--text-secondary); font-size: 0.9rem; flex-wrap: wrap; }
+  .event-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px); z-index: 2000;
+    display: none; align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--bg-elev); border-radius: var(--radius);
+    max-width: 540px; width: 100%; padding: 2.5rem;
+    position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    border: 1px solid var(--border-light); max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.5rem;
+    color: var(--text-secondary); cursor: pointer; transition: var(--transition);
+  }
+  .modal-close:hover { color: var(--wine); transform: rotate(90deg); }
+  .modal h3 { font-size: 1.7rem; color: var(--wine); margin-bottom: 1rem; }
+  body.dark .modal h3 { color: var(--gold-light); }
+  .modal-detail { display: flex; gap: 1rem; margin-bottom: 0.8rem; color: var(--text-secondary); font-size: 0.95rem; }
+  .modal-detail i { width: 20px; color: var(--gold); }
+</style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="section" style="padding-top:5rem;">
+    <div class="container">
+      <div style="text-align:center; max-width:720px; margin:0 auto 3rem;">
+        <h1 class="section-title reveal" style="text-align:center;">Events</h1>
+        <p class="section-subtitle reveal" style="margin:0 auto;">Upcoming happenings and a look back at past events.</p>
+      </div>
+
+      <div class="events-tabs reveal">
+        <button class="event-tab active" data-tab="upcoming">Upcoming</button>
+        <button class="event-tab" data-tab="past">Past</button>
+      </div>
+
+      <div class="event-list" id="eventList"></div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-detail"><i class="fas fa-calendar"></i><span id="modalDate"></span></div>
+      <div class="modal-detail"><i class="fas fa-clock"></i><span id="modalTime"></span></div>
+      <div class="modal-detail"><i class="fas fa-map-marker-alt"></i><span id="modalVenue"></span></div>
+      <div class="modal-detail"><i class="fas fa-tag"></i><span id="modalType"></span></div>
+      <p style="margin-top:1rem;color:var(--text-secondary);" id="modalDesc"></p>
+      <p style="margin-top:1rem;font-weight:600;color:var(--wine);" id="modalStatus"></p>
+    </div>
+  </div>
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>PROLOGUE</h2>
+        <p>The Reading Club of LBSITW</p>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-quote">
+        “A reader lives a thousand lives before he dies.”
+      </p>
+
+      <div class="footer-bottom">
+        <span>📖 Read · Reflect · Reimagine</span>
+        <span>© 2026 PROLOGUE · LBSITW</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

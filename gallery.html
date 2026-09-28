@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROLOGUE · Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .gallery-grid { columns: 3 260px; column-gap: 1.5rem; }
+  .gallery-item {
+    break-inside: avoid; margin-bottom: 1.5rem; border-radius: 16px;
+    overflow: hidden; position: relative; cursor: pointer;
+    box-shadow: var(--shadow-sm); transition: var(--transition);
+  }
+  .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+  .gallery-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1.2rem 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: #fff; font-size: 0.9rem;
+  }
+  .gallery-caption .cat-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--gold-light); display: block; margin-bottom: 0.2rem;
+  }
+
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+    z-index: 3000; display: none; align-items: center; justify-content: center;
+    flex-direction: column; padding: 2rem;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 75vh; border-radius: 12px;
+    object-fit: contain; box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .lightbox-caption { color: #f0e7df; margin-top: 1.2rem; font-size: 1rem; text-align: center; }
+  .lightbox-controls {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 100%; display: flex; justify-content: space-between;
+    padding: 0 1.5rem; pointer-events: none;
+  }
+  .lightbox-controls button {
+    pointer-events: all; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2); color: #fff;
+    width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem;
+    cursor: pointer; transition: var(--transition); backdrop-filter: blur(4px);
+  }
+  .lightbox-controls button:hover { background: var(--wine); border-color: var(--wine); }
+  .lightbox-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; width: 44px; height: 44px; border-radius: 50%;
+    font-size: 1.3rem; cursor: pointer; transition: var(--transition);
+    backdrop-filter: blur(4px);
+  }
+  .lightbox-close:hover { background: var(--wine); border-color: var(--wine); }
+
+  @media (max-width: 768px) {
+    .gallery-grid { columns: 2 200px; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { columns: 1; }
+  }
+</style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+<section class="section" style="padding-top:5rem;">
+  <div class="container">
+
+    <!-- Centered page header -->
+    <div class="page-hero reveal">
+      <span class="page-eyebrow">Memories</span>
+      <h1 class="page-title">Gallery</h1>
+      <p class="page-desc">Moments from PROLOGUE activities, readings, and community gatherings.</p>
+    </div>
+
+    <!-- Segmented filter bar (centered) -->
+    <div style="display:flex; justify-content:center; margin-bottom:3rem;">
+      <div class="filter-bar reveal" id="galleryFilters" role="tablist">
+        <button class="filter-btn active" data-gfilter="all" role="tab">All</button>
+        <button class="filter-btn" data-gfilter="events" role="tab">Events</button>
+        <button class="filter-btn" data-gfilter="reading" role="tab">Reading</button>
+        <button class="filter-btn" data-gfilter="creative" role="tab">Creative</button>
+        <button class="filter-btn" data-gfilter="community" role="tab">Community</button>
+      </div>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid" id="galleryGrid"></div>
+
+  </div>
+</section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <div class="lightbox-controls">
+      <button id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <img src="" alt="" id="lightboxImg">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <footer class="footer">
+  <div class="container">
+
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>PROLOGUE</h2>
+        <p>The Reading Club of LBSITW</p>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-quote">
+        “A reader lives a thousand lives before he dies.”
+      </p>
+
+      <div class="footer-bottom">
+        <span>📖 Read · Reflect · Reimagine</span>
+        <span>© 2026 PROLOGUE · LBSITW</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
