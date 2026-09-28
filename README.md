@@ -1,4 +1,4 @@
-# PROLOGUE — The Reading Club of LBSITW
+# PROLOGUE - The Reading Club of LBSITW
 
 > **Where Stories Begin, Ideas Grow, and Voices Find Their Pages.**
 
@@ -222,5 +222,6 @@ The **PROLOGUE Membership Portal** brings this experience into a single digital 
 **PROLOGUE Membership Portal**
 
 **Read. Explore. Express. Connect.**
+❤️
 
 </div>
